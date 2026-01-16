@@ -1,0 +1,80 @@
+[package]
+name = "dynamic_prompt_agent"
+version = "0.1.0"
+edition = "2021"
+authors = ["Dynamic Prompt Agent Thesis"]
+description = "A runtime-adaptive prompt composition and modular context management agent"
+license = "MIT"
+repository = "https://github.com/saint0x/agent-thesis"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.35", features = ["full", "macros", "rt-multi-thread"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# HTTP client for LLM APIs
+reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
+
+# Identifiers and time
+uuid = { version = "1.6", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Async traits
+async-trait = "0.1"
+
+# Logging and tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Vector similarity (HNSW)
+instant-distance = "0.6"
+
+# CLI
+clap = { version = "4.4", features = ["derive"] }
+
+# Template engine for prompts
+handlebars = "5.1"
+
+# Configuration
+config = "0.14"
+
+# Persistence
+sled = "0.34"
+
+# Regex for text processing
+regex = "1.10"
+
+# Ordered floats for scoring
+ordered-float = "4.2"
+
+# Backoff for retries
+backoff = { version = "0.4", features = ["tokio"] }
+
+# Dotenv for API keys
+dotenvy = "0.15"
+
+[dev-dependencies]
+tokio-test = "0.4"
+criterion = "0.5"
+mockall = "0.12"
+
+[[bin]]
+name = "dpa"
+path = "src/main.rs"
+
+[[bench]]
+name = "pipeline_benchmark"
+harness = false
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
