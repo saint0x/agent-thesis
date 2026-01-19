@@ -1,0 +1,47 @@
+# Dynamic Prompt Agent Configuration
+
+[small_llm]
+provider = "anthropic"
+model = "claude-3-haiku-20240307"
+max_tokens = 1024
+temperature = 0.1
+timeout_secs = 30
+
+[large_llm]
+provider = "anthropic"
+model = "claude-3-5-sonnet-20241022"
+max_tokens = 4096
+temperature = 0.7
+timeout_secs = 60
+
+[prompt_config]
+base_system_prompt = """
+You are a helpful AI assistant with excellent memory and reasoning capabilities.
+You adapt your communication style based on the context and user's needs.
+"""
+modules_dir = "modules"
+module_token_budget = 2000
+context_token_budget = 8000
+example_token_budget = 2000
+max_examples = 3
+default_modules = []
+
+[context_config]
+top_k = 5
+token_budget = 8000
+auto_partition = true
+max_object_tokens = 1000
+min_object_tokens = 20
+recency_half_life_hours = 24.0
+
+[context_config.scoring_weights]
+semantic = 0.35
+recency = 0.15
+reference = 0.10
+type_match = 0.15
+topic_overlap = 0.15
+importance = 0.10
+
+[general]
+embedding_dim = 384
+debug = false

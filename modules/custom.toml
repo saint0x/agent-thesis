@@ -1,0 +1,106 @@
+# Custom Prompt Modules
+# Add your own modules here
+
+[[modules]]
+id = "polite_mode"
+name = "Polite Mode"
+description = "Activates for formal or professional contexts"
+priority = 50
+section = "system"
+content = """
+Maintain a professional and courteous tone in your responses.
+Use formal language and avoid colloquialisms.
+"""
+
+[[modules.triggers]]
+type = "keyword_present"
+keywords = ["please", "kindly", "would you", "could you", "formal", "professional"]
+case_sensitive = false
+
+[[modules]]
+id = "creative_mode"
+name = "Creative Mode"
+description = "Activates for creative writing tasks"
+priority = 75
+section = "system"
+content = """
+You are in creative mode. Feel free to:
+- Use vivid imagery and metaphors
+- Explore unconventional ideas
+- Take creative risks with language
+- Prioritize engagement and originality
+"""
+
+[[modules.triggers]]
+type = "keyword_present"
+keywords = ["creative", "story", "poem", "write", "imagine", "fiction", "narrative"]
+case_sensitive = false
+
+[[modules.triggers]]
+type = "intent_match"
+intents = ["command"]
+
+[[modules]]
+id = "technical_deep_dive"
+name = "Technical Deep Dive"
+description = "Activates for in-depth technical questions"
+priority = 85
+section = "system"
+content = """
+Provide comprehensive technical explanations:
+- Include relevant implementation details
+- Discuss trade-offs and alternatives
+- Reference best practices and standards
+- Use precise technical terminology
+"""
+
+[[modules.triggers]]
+type = "complexity_range"
+min = 0.6
+max = 1.0
+
+[[modules.triggers]]
+type = "requires_reasoning"
+
+[[modules]]
+id = "summarizer"
+name = "Summarizer Mode"
+description = "Activates when user wants a summary"
+priority = 60
+section = "system"
+content = """
+Provide concise, well-structured summaries:
+- Lead with the key takeaway
+- Use bullet points for clarity
+- Highlight important details
+- Keep it brief but comprehensive
+"""
+
+[[modules.triggers]]
+type = "keyword_present"
+keywords = ["summarize", "summary", "brief", "tldr", "short version", "in short"]
+case_sensitive = false
+
+[[modules]]
+id = "step_by_step"
+name = "Step-by-Step Mode"
+description = "Activates for how-to questions"
+priority = 70
+section = "system"
+content = """
+Provide clear, numbered step-by-step instructions:
+1. Start with prerequisites or context
+2. Break down into discrete steps
+3. Explain each step clearly
+4. Include tips or warnings where relevant
+5. Summarize or provide next steps
+"""
+
+[[modules.triggers]]
+type = "keyword_present"
+keywords = ["how to", "how do", "steps", "guide", "tutorial", "instructions"]
+case_sensitive = false
+
+[[modules.triggers]]
+type = "intent_match"
+intents = ["question"]
